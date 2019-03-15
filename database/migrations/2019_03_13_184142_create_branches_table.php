@@ -14,10 +14,15 @@ class CreateBranchesTable extends Migration
     public function up()
     {
         Schema::create('branches', function (Blueprint $table) {
+            $table->engine = 'InnoDB' ;
             $table->bigIncrements('id');
             $table->string('code');
-            $table->text('description');
+            $table->text('description')->nullable();
+            $table->string('cover_front')->nullable();
             $table->timestamps();
+
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci'; 
         });
     }
 
