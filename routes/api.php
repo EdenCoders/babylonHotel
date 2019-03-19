@@ -21,3 +21,6 @@ Route::get('/branches/{branch}','BranchesController@show');
 Route::delete('/branches/{branch}','BranchesController@destroy');
 
 Route::put('/branches/{branch}','BranchesController@update');
+
+
+Route::post('/branches','BranchesController@store');

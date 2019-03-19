@@ -12,7 +12,7 @@ class Branch extends Model
 {
     
 
-    protected $fillable = ['code' , 'description' , 'cover_front'];
+    protected $fillable = ['code' , 'description' , 'cover_front','name'];
 
 
     public function contacts(){
@@ -24,5 +24,10 @@ class Branch extends Model
 
 
         return $this->hasMany('App\SocialMediaContact');
+    }
+
+    public function address(){
+
+        return $this->hasOne('App\Address');
     }
 }

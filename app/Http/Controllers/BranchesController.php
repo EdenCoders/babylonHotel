@@ -30,16 +30,20 @@ class BranchesController extends Controller
         if(! $branch)
             return response()->json(['messsage' => 'Branch Not Found!'],404); 
 
+        
+
+        //Delete the record
         $branch->delete();
 
         return response()->json(['message' => 'Branch Deleted Successfully!'],200);
     }
 
-    public function update(Branch $branch){
+    public function update(Request $request,Branch $branch){
 
-        request()->validate([
-            'code' => ['required'],
-            'name' => ['required'],
+
+        $request->validate([
+            'code' => 'required|max:20|min:3',
+            'name' => 'required|max:255|min:3',
 
         ]);
 
@@ -63,5 +67,31 @@ class BranchesController extends Controller
 
         
         return response()->json($branch , 200);
+    }
+
+
+    public function store(Request $request){
+
+        //validate data
+        $request->validate([
+            'code' => 'required|max:20|min:3',
+            'name' => 'required|max:255|min:3',
+
+        ]);
+
+
+        //Store data 
+       $branch =  Branch::create([
+
+            'code' => $request->code , 
+            'name' => $request->name, 
+            'description' => ($request->description) ? $request->description : '' , 
+            'cover_front' => ($request->cover_front) ? $request->cover_front : '' 
+        ]);
+
+
+        //send data to called 
+
+        return response()->json($branch,201);
     }
 }
