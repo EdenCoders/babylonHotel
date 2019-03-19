@@ -13,9 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 
 Route::get('/branches','BranchesController@index');
+
+Route::get('/branches/{branch}','BranchesController@show');
+
+Route::delete('/branches/{branch}','BranchesController@destroy');
+
+Route::put('/branches/{branch}','BranchesController@update');

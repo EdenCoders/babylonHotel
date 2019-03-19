@@ -17,6 +17,7 @@ class CreateBranchesTable extends Migration
             $table->engine = 'InnoDB' ;
             $table->bigIncrements('id');
             $table->string('code');
+            $table->string('name');
             $table->text('description')->nullable();
             $table->string('cover_front')->nullable();
             $table->timestamps();
